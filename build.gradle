@@ -8,6 +8,10 @@ group = 'com.example'
 version = '0.0.1-SNAPSHOT'
 sourceCompatibility = '11'
 
+jar {
+    archivesBaseName = 'jnp2biggie'
+}
+
 repositories {
     mavenCentral()
 }
@@ -15,6 +19,7 @@ repositories {
 dependencies {
     def camelVersion = '3.10.0'
     def scalaVersion = '2.11.0'
+
     implementation "org.springframework.boot:spring-boot-starter-web"
     implementation "org.apache.camel.springboot:camel-spring-boot-starter:$camelVersion"
     implementation "org.apache.camel:camel-core:$camelVersion"
@@ -26,9 +31,7 @@ dependencies {
     implementation "org.apache.camel:camel-kafka:$camelVersion"
     implementation "org.scala-lang:scala-library:$scalaVersion"
 
-    testImplementation 'org.springframework.boot:spring-boot-starter-test'
-}
+    implementation "org.apache.camel:camel-telegram:$camelVersion"
 
-test {
-    useJUnitPlatform()
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
 }

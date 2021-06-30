@@ -6,10 +6,13 @@ import org.apache.camel.component.jackson.JacksonDataFormat;
 
 @Component
 public class JokeProducer extends RouteBuilder {
+    // A route which, every api.sendingPeriod ms, sends
+    // two types of jokes (potentially explicit and family friendly)
+    // to kafka streams.
 
     @Override
     public void configure() throws Exception {
-        JacksonDataFormat format = new JacksonDataFormat(Joke.class);
+        var format = new JacksonDataFormat(Joke.class);
 
         from("timer://myTimer?fixedRate=true&period={{api.sendingPeriod}}")
                 .to("direct:start")
